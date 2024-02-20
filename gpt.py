@@ -11,7 +11,7 @@ from secrets import *
 class Chat():
 
 	def __init__(self):
-		self.default_directory = "/mnt/c/Python/openai/discussions/"
+		self.default_directory = DEFAULT_DIRECTORY
 		self.filename = self.default_directory + datetime.now().strftime('%Y%m%d_%H:%M:%s.log')
 		self.log = 0
 		self.log_setup()
@@ -38,7 +38,6 @@ class Chat():
 
 		get_input = input("\r\nPrompt >>> ")
 		if ( self.stop_dict.get(get_input.lower(),0) ):
-			# print("\r\nquitting\r\n\r\n")
 			self.loop = 0
 			self.exit_program()
 	
@@ -72,7 +71,6 @@ class Chat():
 					print()
 					break
 				else:
-					# print("in progress...")
 					sleep(0.3)
 
 	def log_setup(self):
@@ -92,7 +90,6 @@ class Chat():
 			instructions="Please be as neutral as possible while maintaining levity. And fuck the English.",
 		)
 		while(self.run.status != "completed"):
-			# print('...checking...\r\n')
 			sleep(0.3)
 			self.run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=self.run.id)
 		self.messages=self.client.beta.threads.messages.list(thread_id=self.thread.id)
@@ -118,7 +115,6 @@ class Chat():
 		)
 
 		if ( self.stop_dict.get(get_input.lower(),0) ):
-			# print("\r\nquitting\r\n\r\n")
 			self.loop = 0
 			self.exit_program()
 		else:
@@ -185,8 +181,6 @@ class Chat():
 
 def main():
 	session = Chat()
-	# print("checking assistant status. ")
-	# time.sleep(10)
 	while(session.loop):
 		session.new_message()
 		trash()
