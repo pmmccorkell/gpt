@@ -51,7 +51,7 @@ class Chat():
 			self.run = self.client.beta.threads.runs.create(
 				thread_id=self.thread.id,
 				assistant_id=self.assistant.id,
-				instructions="Please be as neutral as possible while maintaining levity and Irish humor. And fuck the English.",
+				instructions="Please be as neutral as possible while maintaining levity and Irish humor. And down with the English.",
 			)
 
 			while True:
