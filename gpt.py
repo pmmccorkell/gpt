@@ -63,7 +63,7 @@ class Chat():
 					content_in = self.messages.data[-1].content[0]
 					assert content_in.type == "text"
 					self.log.info("Prompt: " + str(content_in.text.value))
-					print("Prompt: " + str(content_in.text.value))
+					# print("Prompt: " + str(content_in.text.value))
 					content_out = self.messages.data[-2].content[0]
 					assert content_out.type == "text"
 					self.log.info("GPT: " + str(content_out.text.value))
@@ -87,7 +87,7 @@ class Chat():
 		self.run = self.client.beta.threads.runs.create(
 			thread_id=self.thread.id,
 			assistant_id=self.assistant.id,
-			instructions="Please be as neutral as possible while maintaining levity. And fuck the English.",
+			instructions="Please be as neutral as possible while maintaining levity. And down with the English.",
 		)
 		while(self.run.status != "completed"):
 			sleep(0.3)
@@ -97,11 +97,11 @@ class Chat():
 		content_in = self.messages.data[1].content[0]
 		assert content_in.type == "text"
 		self.log.info("Prompt: " + str(content_in.text.value))
-		print("Prompt: " + str(content_in.text.value))
+		# print("Prompt: " + str(content_in.text.value))
 		content_out = self.messages.data[0].content[0]
 		assert content_out.type == "text"
 		self.log.info("GPT: " + str(content_out.text.value))
-		print("GPT: " + str(content_out.text.value))
+		print("\r\nGPT: " + str(content_out.text.value))
 		print()
 
 
@@ -129,7 +129,7 @@ class Chat():
 		print("\r\n\r\nrenaming")
 		print(file_text)
 
-		self.client = openai.OpenAI(api_key='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')
+		self.client = openai.OpenAI(api_key=OPENAI_KEY)
 		self.assistant = self.client.beta.assistants.create(
 			name="Summarizer",
 			instructions="You provide a short summary of text to be used as a Windows filename.",
