@@ -45,13 +45,10 @@ class Chat():
 		self.instructions = instructions
 
 		# Initiate some dummy properties that GPT API will use later.
-		self.assistant = None
-		self.thread = None
 		self.message = None
 		self.run = None
 		self.answer = None
 
-	# def setup(self):
 		# Create an assistant
 		self.assistant = self.client.beta.assistants.create(
 			name = self.assistant_name,
@@ -63,8 +60,6 @@ class Chat():
 		# Create a thread to track the conversation
 		self.thread = self.client.beta.threads.create()
 
-	def setup(self):
-		return 1
 
 	# Function to setup logging
 	def log_setup(self):
