@@ -8,7 +8,7 @@ import atexit
 
 def main():
 	# Initiate class with default values.
-	session = Chat('Matlab','gpt-3.5-turbo-0125','You are an AI assistant that helps users generate Matlab code.')
+	session = Chat(name='Matlab',model='gpt-3.5-turbo-0125',instructions='You are an AI assistant that helps users generate Matlab code.')
 
 	# Register exit_program() to execute any time the program ends.
 	atexit.register(session.exit_program)
