@@ -54,8 +54,8 @@ class Chat():
 		###### For the first cycle of the prompt->response loop, execute manually in __init__() ######
 
 		# Create a thread to track the conversation
-		# self.thread = self.client.beta.threads.create()
-		self.thread = ''
+		self.thread = self.client.beta.threads.create()
+		# self.thread = ''
 
 		# Get input from user
 		# get_input = input("\r\nPrompt >>> ")
