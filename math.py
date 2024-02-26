@@ -1,3 +1,6 @@
+# Patrick McCorkell
+# Feb 2024
+
 from time import sleep
 import openai
 import logging
@@ -8,7 +11,7 @@ import os
 import atexit
 from secrets import *
 
-	
+
 # Class for creating a Thread and Assistant with GPT API
 class Chat():
 
