@@ -13,5 +13,5 @@ def main():
 		session.new_message()
 		trash()
 		sleep(0.3)
-		
+
 main()
