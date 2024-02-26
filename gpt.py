@@ -84,6 +84,7 @@ class Chat():
 		)
 
 		# Check if user prompt is a command to quit the program.
+			# If not a quit command, then get the response from GPT API
 		if ( self.stop_dict.get(get_input.lower(),0) ):
 			self.loop = 0
 			self.exit_program()
