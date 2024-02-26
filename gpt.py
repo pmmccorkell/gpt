@@ -47,7 +47,7 @@ class Chat():
 		# Initiate some dummy properties that GPT API will use later.
 		self.message = None
 		self.run = None
-		self.messages = None
+		self.answer = None
 
 
 	# Function to setup logging
@@ -105,13 +105,13 @@ class Chat():
 			self.run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=self.run.id)
 
 		# Pull in the response message.
-		self.messages=self.client.beta.threads.messages.list(thread_id=self.thread.id)
+		self.answer=self.client.beta.threads.answer.list(thread_id=self.thread.id)
 		print()
-		content_in = self.messages.data[1].content[0]
+		content_in = self.answer.data[1].content[0]
 		assert content_in.type == "text"
 		self.log.info("Prompt: " + str(content_in.text.value))
 		# print("Prompt: " + str(content_in.text.value))
-		content_out = self.messages.data[0].content[0]
+		content_out = self.answer.data[0].content[0]
 		assert content_out.type == "text"
 		self.log.info("GPT: " + str(content_out.text.value))
 		print("\r\nGPT: " + str(content_out.text.value))
@@ -167,13 +167,13 @@ class Chat():
 
 			# Once the run status has completed, save the response and break out of the loop.
 			if self.run.status == "completed":
-				self.messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
+				self.answer = self.client.beta.threads.messages.list(thread_id=self.thread.id)
 				break
 			else:
 				sleep(1)
 
 		# Parse the response for the useable information we want.
-		content_out = self.messages.data[0].content[0]
+		content_out = self.answer.data[0].content[0]
 		assert content_out.type == "text"
 		gpt_summary = content_out.text.value
 		gpt_summary = gpt_summary[0:min(128,len(gpt_summary))]
