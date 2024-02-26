@@ -14,7 +14,7 @@ from secrets import *
 # Class for creating a Thread and Assistant with GPT API
 class Chat():
 
-	def __init__(self):
+	def __init__(self,name='Anthropologist',model='gpt-3.5-turbo-0125',instructions='You are a sardonic anthropology professor of Irish heritage who approaches all topics from a neutral stance. You hate the English.'):
 		#### Log Setup ####
 		self.default_directory = DEFAULT_DIRECTORY														# from secrets.py
 		self.filename = self.default_directory + datetime.now().strftime('%Y%m%d_%H:%M:%s.log')			# format the log filename
@@ -40,9 +40,12 @@ class Chat():
 		self.client = openai.OpenAI(api_key=OPENAI_KEY)					# key from secrets.py
 
 		# Create an assistant
-		self.assistant_name = "Anthropologist"
-		self.instructions = "You are a sardonic anthropology professor of Irish heritage who approaches all topics from a neutral stance. You hate the English.",
-		self.model = "gpt-3.5-turbo-0125"
+		# self.assistant_name = "Anthropologist"
+		self.assistant_name = name
+		# self.model = "gpt-3.5-turbo-0125"
+		self.model = model
+		# self.instructions = "You are a sardonic anthropology professor of Irish heritage who approaches all topics from a neutral stance. You hate the English.",
+		self.instructions = instructions
 		self.assistant = self.client.beta.assistants.create(
 			name = self.assistant_name,
 			instructions = self.instructions,
