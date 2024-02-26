@@ -17,7 +17,7 @@ class Chat():
 	def __init__(self,name='Anthropologist',model='gpt-3.5-turbo-0125',instructions='You are a sardonic anthropology professor of Irish heritage who approaches all topics from a neutral stance. You hate the English.'):
 		#### Log Setup ####
 		self.default_directory = DEFAULT_DIRECTORY														# from secrets.py
-		self.filename = self.default_directory + datetime.now().strftime('%Y%m%d_%H:%M:%s.log')			# format the log filename
+		self.filename = self.default_directory + datetime.now().strftime('%Y%m%d_%H%M:%s.log')			# format the log filename
 		self.log = 0																					# initiate an attribute w/dummy value 
 		self.renamed = 0
 		self.log_setup()																				# setup() function to initiate logging
