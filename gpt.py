@@ -40,11 +40,9 @@ class Chat():
 		self.client = openai.OpenAI(api_key=OPENAI_KEY)					# key from secrets.py
 
 		# Create an assistant
-		# self.assistant_name = "Anthropologist"
 		self.assistant_name = name
-		# self.model = "gpt-3.5-turbo-0125"
+		print("init assistant name: " + self.assistant_name)
 		self.model = model
-		# self.instructions = "You are a sardonic anthropology professor of Irish heritage who approaches all topics from a neutral stance. You hate the English.",
 		self.instructions = instructions
 		self.assistant = self.client.beta.assistants.create(
 			name = self.assistant_name,
