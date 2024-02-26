@@ -41,6 +41,7 @@ class Chat():
 
 		# Create an assistant
 		self.assistant_name = name
+
 		self.model = model
 		self.instructions = instructions
 		self.assistant = self.client.beta.assistants.create(
@@ -53,48 +54,52 @@ class Chat():
 		###### For the first cycle of the prompt->response loop, execute manually in __init__() ######
 
 		# Create a thread to track the conversation
-		self.thread = self.client.beta.threads.create()
+		# self.thread = self.client.beta.threads.create()
+		self.thread = ''
 
 		# Get input from user
-		get_input = input("\r\nPrompt >>> ")
+		# get_input = input("\r\nPrompt >>> ")
 
 		# Check if the user is requesting to exit the program.
-		if ( self.stop_dict.get(get_input.lower(),0) ):
-			self.loop = 0			# end the loop
-			self.exit_program()		# exit appropriately
+		# if ( self.stop_dict.get(get_input.lower(),0) ):
+		# 	self.loop = 0			# end the loop
+		# 	self.exit_program()		# exit appropriately
 	
 		# 
-		else:
-			self.message = self.client.beta.threads.messages.create(
-				thread_id=self.thread.id,
-				role="user",
-				content = get_input
-			)
+		# else:
+		# 	self.message = self.client.beta.threads.messages.create(
+		# 		thread_id=self.thread.id,
+		# 		role="user",
+		# 		content = get_input
+		# 	)
 
-			self.run = self.client.beta.threads.runs.create(
-				thread_id=self.thread.id,
-				assistant_id=self.assistant.id,
-				instructions=self.instructions,
-			)
+		self.message = ''
+		self.run = ''
+		self.messages = ''
+			# self.run = self.client.beta.threads.runs.create(
+			# 	thread_id=self.thread.id,
+			# 	assistant_id=self.assistant.id,
+			# 	instructions=self.instructions,
+			# )
 
-			while True:
-				self.run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=self.run.id)
+			# while True:
+			# 	self.run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=self.run.id)
 
-				if self.run.status == "completed":
-					self.messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
-					print()
-					content_in = self.messages.data[-1].content[0]
-					assert content_in.type == "text"
-					self.log.info("Prompt: " + str(content_in.text.value))
-					# print("Prompt: " + str(content_in.text.value))
-					content_out = self.messages.data[-2].content[0]
-					assert content_out.type == "text"
-					self.log.info("GPT: " + str(content_out.text.value))
-					print("GPT: " + str(content_out.text.value))
-					print()
-					break
-				else:
-					sleep(0.3)
+			# 	if self.run.status == "completed":
+			# 		self.messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
+			# 		print()
+			# 		content_in = self.messages.data[-1].content[0]
+			# 		assert content_in.type == "text"
+			# 		self.log.info("Prompt: " + str(content_in.text.value))
+			# 		# print("Prompt: " + str(content_in.text.value))
+			# 		content_out = self.messages.data[-2].content[0]
+			# 		assert content_out.type == "text"
+			# 		self.log.info("GPT: " + str(content_out.text.value))
+			# 		print("GPT: " + str(content_out.text.value))
+			# 		print()
+			# 		break
+			# 	else:
+			# 		sleep(0.3)
 
 	def log_setup(self):
 		self.log = logging.getLogger("Assitant")
