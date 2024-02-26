@@ -51,6 +51,19 @@ class Chat():
 		self.run = None
 		self.answer = None
 
+	# def setup(self):
+		# Create an assistant
+		self.assistant = self.client.beta.assistants.create(
+			name = self.assistant_name,
+			instructions = self.instructions,
+		#	tools=[{"type": "code_interpreter"}],
+			model = self.model,
+		)
+
+		# Create a thread to track the conversation
+		self.thread = self.client.beta.threads.create()
+
+
 
 	# Function to setup logging
 	def log_setup(self):
@@ -62,17 +75,6 @@ class Chat():
 		file_handler.setFormatter(format)
 		self.log.addHandler(file_handler)
 
-	def setup(self):
-		# Create an assistant
-		self.assistant = self.client.beta.assistants.create(
-			name = self.assistant_name,
-			instructions = self.instructions,
-		#	tools=[{"type": "code_interpreter"}],
-			model = self.model,
-		)
-
-		# Create a thread to track the conversation
-		self.thread = self.client.beta.threads.create()
 
 	# Function to send prompts to GPT via API
 	def new_message(self):
