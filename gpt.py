@@ -182,7 +182,6 @@ class Chat():
 		print("\r\nsummary: ")
 		print(gpt_summary)
 
-
 		new_filename = self.filename[0:len(self.default_directory)+14] + self.assistant_name + " - " + gpt_summary + '.log'
 		print(new_filename)
 		os.rename(self.filename,new_filename)
