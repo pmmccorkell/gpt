@@ -10,7 +10,7 @@ def main():
 	# Initiate class with default values.
 	session = Chat(name='Matlab',model='gpt-3.5-turbo-0125',instructions='You are an AI assistant that helps users generate Matlab code.')
 
-	# Register exit_program() to execute any time the program ends.
+	# Register gpt.Chat.exit_program() to execute any time the program ends.
 	atexit.register(session.exit_program)
 
 	# Loop the prompt->answer cycle
