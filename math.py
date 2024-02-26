@@ -8,7 +8,7 @@ import os
 import atexit
 from secrets import *
 
-
+	
 # Class for creating a Thread and Assistant with GPT API
 class Chat():
 
