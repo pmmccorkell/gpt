@@ -1,6 +1,6 @@
 # Patrick McCorkell
 # Feb 2024
-	
+
 from time import sleep
 import openai
 import logging
