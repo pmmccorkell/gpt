@@ -149,6 +149,7 @@ class Chat():
 	# Function to rename the log file based on a short summary from GPT.
 	def file_rename(self):
 		
+		print("assistant name: " + self.assistant_name)
 		# open file, read the contents in, and close the file
 		file = open(self.filename,'r')
 		file_text = file.read()
