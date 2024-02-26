@@ -198,12 +198,15 @@ class Chat():
 	# Procedures once user has requested to exit the program.
 	def exit_program(self):
 		print("\r\n\r\nQuitting program.")
+		# Delete original assistant
 		self.delete_assistants()
 		logging.shutdown()
 		trash()
 		if not self.renamed:
+			# Use GPT to summarize chat log and provide a filename
 			self.file_rename()
-		self.delete_assistants()
+			# Delete the file_rename assistant.
+			self.delete_assistants()
 		trash()
 
 def main():
