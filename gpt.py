@@ -45,6 +45,8 @@ class Chat():
 		self.instructions = instructions
 
 		# Initiate some dummy properties that GPT API will use later.
+		self.assistant = None
+		self.thread = None
 		self.message = None
 		self.run = None
 		self.answer = None
