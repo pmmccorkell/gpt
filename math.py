@@ -8,6 +8,7 @@ import os
 import atexit
 from secrets import *
 
+
 # Class for creating a Thread and Assistant with GPT API
 class Chat():
 
@@ -37,8 +38,8 @@ class Chat():
 		self.client = openai.OpenAI(api_key=OPENAI_KEY)					# key from secrets.py
 
 		# Create an assistant
-		self.assistant_name = "Anthropologist"
-		self.instructions = "You are a sardonic anthropology professor of Irish heritage who approaches all topics from a neutral stance. You hate the English.",
+		self.assistant_name = "Matlab"
+		self.instructions = "You are an AI assistant that helps users generate Matlab code."
 		self.model = "gpt-3.5-turbo-0125"
 		self.assistant = self.client.beta.assistants.create(
 			name = self.assistant_name,
