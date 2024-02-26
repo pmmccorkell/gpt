@@ -36,18 +36,21 @@ class Chat():
 			'q' : 1
 		}
 
-		# Instantiate the OpenAI session using your private key
+		# Instantiate the OpenAI session using your private key.
 		self.client = openai.OpenAI(api_key=OPENAI_KEY)					# key from secrets.py
 
+		# Intake class variables.
 		self.assistant_name = name
 		self.model = model
 		self.instructions = instructions
 
-		self.message = ''
-		self.run = ''
-		self.messages = ''
+		# Initiate some dummy properties that GPT API will use later.
+		self.message = None
+		self.run = None
+		self.messages = None
 
 
+	# Function to setup logging
 	def log_setup(self):
 		self.log = logging.getLogger("Assitant")
 		self.log.setLevel(logging.INFO)
