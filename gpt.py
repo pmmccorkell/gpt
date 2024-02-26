@@ -60,7 +60,7 @@ class Chat():
 		file_handler.setFormatter(format)
 		self.log.addHandler(file_handler)
 
-
+	# Function to process responses from GPT API
 	def response(self):
 		self.run = self.client.beta.threads.runs.create(
 			thread_id=self.thread.id,
