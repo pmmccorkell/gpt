@@ -2,7 +2,7 @@
 # Feb 2024
 
 from time import sleep
-from gc import cololect as trash
+from gc import collect as trash
 from gpt import Chat
 import atexit
 
