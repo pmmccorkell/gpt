@@ -16,7 +16,7 @@ def main():
 	# Loop the prompt->answer cycle
 	while(session.loop):
 		session.new_message()
-		trash()
+		trash()						# cleanup memory
 		sleep(0.3)
 
 # Execute main() if this is the top level script.
