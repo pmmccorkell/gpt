@@ -17,7 +17,7 @@ def main():
 	while(session.loop):
 		session.new_message()
 		trash()						# cleanup memory
-		sleep(0.3)
+		sleep(0.1)
 
 # Execute main() if this is the top level script.
 if __name__ == '__main__':
