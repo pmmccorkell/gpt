@@ -189,8 +189,8 @@ class Chat():
 		os.rename(self.filename,new_filename)
 		self.renamed = 1
 
+	# Delete assistants.
 	def delete_assistants(self):
-		# print("\r\n\r\nassistant id from deletion: " + str(self.assistant.id))
 		if(self.assistant):
 			self.client.beta.assistants.delete(self.assistant.id)
 			self.assistant = None
