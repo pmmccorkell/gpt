@@ -190,10 +190,10 @@ class Chat():
 		self.renamed = 1
 
 	def delete_assistants(self):
-		print("\r\n\r\nassistant id from deletion: " + str(self.assistant.id))
+		# print("\r\n\r\nassistant id from deletion: " + str(self.assistant.id))
 		if(self.assistant):
 			self.client.beta.assistants.delete(self.assistant.id)
-			self.assistant = 0
+			self.assistant = None
 
 	# Procedures once user has requested to exit the program.
 	def exit_program(self):
