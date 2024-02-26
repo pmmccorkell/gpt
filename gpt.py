@@ -60,6 +60,34 @@ class Chat():
 		file_handler.setFormatter(format)
 		self.log.addHandler(file_handler)
 
+	def setup(self):
+		# Create an assistant
+		self.assistant = self.client.beta.assistants.create(
+			name = self.assistant_name,
+			instructions = self.instructions,
+		#	tools=[{"type": "code_interpreter"}],
+			model = self.model,
+		)
+
+		# Create a thread to track the conversation
+		self.thread = self.client.beta.threads.create()
+
+	# Function to send prompts to GPT via API
+	def new_message(self):
+		get_input = input("\r\nPrompt >>> ")
+
+		self.message = self.client.beta.threads.messages.create(
+			thread_id=self.thread.id,
+			role="user",
+			content = get_input
+		)
+
+		if ( self.stop_dict.get(get_input.lower(),0) ):
+			self.loop = 0
+			self.exit_program()
+		else:
+			self.response()
+
 	# Function to process responses from GPT API
 	def response(self):
 		self.run = self.client.beta.threads.runs.create(
@@ -81,34 +109,6 @@ class Chat():
 		self.log.info("GPT: " + str(content_out.text.value))
 		print("\r\nGPT: " + str(content_out.text.value))
 		print()
-
-	def setup(self):
-		# Create an assistant
-		self.assistant = self.client.beta.assistants.create(
-			name = self.assistant_name,
-			instructions = self.instructions,
-		#	tools=[{"type": "code_interpreter"}],
-			model = self.model,
-		)
-
-		# Create a thread to track the conversation
-		self.thread = self.client.beta.threads.create()
-
-
-	def new_message(self):
-		get_input = input("\r\nPrompt >>> ")
-
-		self.message = self.client.beta.threads.messages.create(
-			thread_id=self.thread.id,
-			role="user",
-			content = get_input
-		)
-
-		if ( self.stop_dict.get(get_input.lower(),0) ):
-			self.loop = 0
-			self.exit_program()
-		else:
-			self.response()
 
 	# Function to rename the log file based on a short summary from GPT.
 	def file_rename(self):
