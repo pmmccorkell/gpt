@@ -188,6 +188,7 @@ class Chat():
 		self.renamed = 1
 
 	def delete_assistants(self):
+		print("\r\n\r\nassistant id from deletion: " + str(self.assistant.id))
 		try:
 			self.client.beta.assistants.delete(self.assistant.id)
 		except:
