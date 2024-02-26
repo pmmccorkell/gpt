@@ -196,13 +196,13 @@ class Chat():
 		self.delete_assistants()
 		trash()
 
-def main():
-	session = Chat()
-	session.setup()
-	atexit.register(session.exit_program)
-	while(session.loop):
-		session.new_message()
-		trash()
-		sleep(0.3)
+# def main():
+# 	session = Chat()
+# 	session.setup()
+# 	atexit.register(session.exit_program)
+# 	while(session.loop):
+# 		session.new_message()
+# 		trash()
+# 		sleep(0.3)
 		
-main()
+# main()
