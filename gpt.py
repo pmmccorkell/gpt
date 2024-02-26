@@ -188,7 +188,6 @@ class Chat():
 		print(new_filename)
 		os.rename(self.filename,new_filename)
 		self.renamed = 1
-		self.delete_assistants()
 
 	# Delete assistants.
 	def delete_assistants(self):
