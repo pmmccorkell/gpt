@@ -210,9 +210,13 @@ class Chat():
 		trash()			# cleanup memory
 
 def main():
+	# Initiate class with default values.
 	session = Chat()
+	# One-time setup.
 	session.setup()
+	# Register exit_program() to execute any time the program ends.
 	atexit.register(session.exit_program)
+	# Loop the prompt->answer cycle
 	while(session.loop):
 		session.new_message()
 		trash()
