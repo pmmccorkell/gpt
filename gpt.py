@@ -41,7 +41,6 @@ class Chat():
 
 		# Create an assistant
 		self.assistant_name = name
-		print("init assistant name: " + self.assistant_name)
 		self.model = model
 		self.instructions = instructions
 		self.assistant = self.client.beta.assistants.create(
