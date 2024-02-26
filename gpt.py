@@ -105,7 +105,7 @@ class Chat():
 			self.run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=self.run.id)
 
 		# Pull in the response message.
-		self.answer=self.client.beta.threads.answer.list(thread_id=self.thread.id)
+		self.answer=self.client.beta.threads.messages.list(thread_id=self.thread.id)
 		print()
 		content_in = self.answer.data[1].content[0]
 		assert content_in.type == "text"
