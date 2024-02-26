@@ -8,7 +8,6 @@ import atexit
 
 def main():
 	session = Chat('Matlab','gpt-3.5-turbo-0125','You are an AI assistant that helps users generate Matlab code.')
-	session.setup()
 	atexit.register(session.exit_program)
 	while(session.loop):
 		session.new_message()
