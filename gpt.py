@@ -43,17 +43,6 @@ class Chat():
 		self.model = model
 		self.instructions = instructions
 
-		# Create an assistant
-		self.assistant = self.client.beta.assistants.create(
-			name = self.assistant_name,
-			instructions = self.instructions,
-		#	tools=[{"type": "code_interpreter"}],
-			model = self.model,
-		)
-
-		# Create a thread to track the conversation
-		self.thread = self.client.beta.threads.create()
-
 		self.message = ''
 		self.run = ''
 		self.messages = ''
@@ -89,6 +78,18 @@ class Chat():
 		self.log.info("GPT: " + str(content_out.text.value))
 		print("\r\nGPT: " + str(content_out.text.value))
 		print()
+
+	def setup(self):
+		# Create an assistant
+		self.assistant = self.client.beta.assistants.create(
+			name = self.assistant_name,
+			instructions = self.instructions,
+		#	tools=[{"type": "code_interpreter"}],
+			model = self.model,
+		)
+
+		# Create a thread to track the conversation
+		self.thread = self.client.beta.threads.create()
 
 
 	def new_message(self):
@@ -197,6 +198,7 @@ class Chat():
 
 def main():
 	session = Chat()
+	session.setup()
 	atexit.register(session.exit_program)
 	while(session.loop):
 		session.new_message()
