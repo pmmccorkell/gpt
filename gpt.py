@@ -170,7 +170,7 @@ class Chat():
 			name="Summarizer",
 			instructions="You provide a short summary of text to be used as a Windows filename.",
 			# tools=[{"type": "code_interpreter"}],
-			model=self.model,
+			model='gpt-3.5-turbo',
 		)
 
 		# Start a new thread.
