@@ -205,6 +205,6 @@ def main():
 		trash()
 		sleep(0.3)
 
-
-if __name__ == 'main':
+print(__name__)
+if __name__ == '__main__':
 	main()
