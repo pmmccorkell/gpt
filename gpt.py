@@ -89,15 +89,16 @@ class Chat():
 			self.loop = 0
 			self.exit_program()
 		else:
+			self.run = self.client.beta.threads.runs.create(
+				thread_id=self.thread.id,
+				assistant_id=self.assistant.id,
+				instructions=self.instructions,
+			)
 			self.response()
 
 	# Function to process responses from GPT API
 	def response(self):
-		self.run = self.client.beta.threads.runs.create(
-			thread_id=self.thread.id,
-			assistant_id=self.assistant.id,
-			instructions=self.instructions,
-		)
+		# Check if API has responded yet
 		while(self.run.status != "completed"):
 			sleep(0.3)
 			self.run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=self.run.id)
