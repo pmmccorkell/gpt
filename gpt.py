@@ -63,7 +63,8 @@ class Chat():
 		# Create a thread to track the conversation
 		self.thread = self.client.beta.threads.create()
 
-
+	def setup(self):
+		return 1
 
 	# Function to setup logging
 	def log_setup(self):
