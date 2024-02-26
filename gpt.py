@@ -76,12 +76,14 @@ class Chat():
 	def new_message(self):
 		get_input = input("\r\nPrompt >>> ")
 
+		# Form the message object
 		self.message = self.client.beta.threads.messages.create(
 			thread_id=self.thread.id,
 			role="user",
 			content = get_input
 		)
 
+		# Check if user prompt is a command to quit the program.
 		if ( self.stop_dict.get(get_input.lower(),0) ):
 			self.loop = 0
 			self.exit_program()
