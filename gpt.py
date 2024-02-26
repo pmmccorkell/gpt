@@ -98,10 +98,12 @@ class Chat():
 
 	# Function to process responses from GPT API
 	def response(self):
-		# Check if API has responded yet
+		# Loop until API response is completed.
 		while(self.run.status != "completed"):
 			sleep(0.3)
+			# periodic check of API status.
 			self.run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=self.run.id)
+
 		self.messages=self.client.beta.threads.messages.list(thread_id=self.thread.id)
 		print()
 		content_in = self.messages.data[1].content[0]
