@@ -201,13 +201,13 @@ class Chat():
 		# Delete original assistant
 		self.delete_assistants()
 		logging.shutdown()
-		trash()
+		trash()			# cleanup memory
 		if not self.renamed:
 			# Use GPT to summarize chat log and provide a filename
 			self.file_rename()
 			# Delete the file_rename assistant.
 			self.delete_assistants()
-		trash()
+		trash()			# cleanup memory
 
 def main():
 	session = Chat()
